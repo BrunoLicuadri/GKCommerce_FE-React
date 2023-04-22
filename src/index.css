@@ -55,16 +55,6 @@ header {
   align-items: center;
 }
 
-.gkc-header-client {
-  background-color: var(--gk-color-bg-secondary);
-  color: var(--gk-color-font-primary);
-}
-
-.gkc-header-admin {
-  background-color: var(--gk-color-bg-quaternary);
-  color: var(--gk-color-font-tertiary);
-}
-
 nav {
   display: flex;
   justify-content: space-between;
