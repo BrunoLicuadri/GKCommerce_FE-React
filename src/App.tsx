@@ -1,26 +1,12 @@
 import './App.css';
-
-import cartIcon from './assets/Images/cart.svg';
+import HeaderClient from './Components/HeaderClient';
 import computerImg from './assets/Images/computer.png';
 
 function App() {
 
   return (
     <>
-      <header className="gkc-header-client">
-      <nav className="gkc-container">
-        <h1>GKCommerce</h1>
-        <div className="gkc-navbar-right">
-          <div className="gkc-menu-items-container">
-            <div className="gkc-menu-items">
-              <img src={cartIcon} alt="Carrinho de Compras" />
-            </div>
-          </div>
-          <a href="#">Entrar</a>
-        </div>
-        
-      </nav>
-    </header>
+      <HeaderClient/>
     <main>
       <section id="product-details-section" className="gkc-container">
         <div className="gkc-card gkc-mb20">
