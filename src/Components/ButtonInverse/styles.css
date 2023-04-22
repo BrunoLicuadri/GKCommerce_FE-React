@@ -1,0 +1,5 @@
+.gkc-btn-white {
+    background-color: var(--gk-color-btn-inverse);
+    color: var(--gk-color-btn-primary);
+    border: 1px solid var(--gk-color-btn-primary);
+  }

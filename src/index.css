@@ -182,18 +182,6 @@ nav h1 {
   cursor: pointer;
 }
 
-.gkc-btn-blue {
-  background-color: var(--gk-color-btn-primary);
-  color: var(--gk-color-btn-inverse);
-  border: none;
-}
-
-.gkc-btn-white {
-  background-color: var(--gk-color-btn-inverse);
-  color: var(--gk-color-btn-primary);
-  border: 1px solid var(--gk-color-btn-primary);
-}
-
 .gkc-btn-container {
   width: 100%;
   display: grid;

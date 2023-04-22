@@ -1,0 +1,5 @@
+.gkc-btn-blue {
+    background-color: var(--gk-color-btn-primary);
+    color: var(--gk-color-btn-inverse);
+    border: none;
+  }
