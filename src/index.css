@@ -196,63 +196,9 @@ nav h1 {
 }
 
 
-.gkc-btn-next-page {
-  border: 1px solid var(--gk-color-btn-primary);
-  padding: 10px;
-  border-radius: 4px;
-  color: var(--gk-color-btn-primary);
-  text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
 /*---------------------------------------------------------------------------------*/
 /* SEARCH BAR STYLEs */
 
-.gkc-search-bar {
-  height: 40px;
-  display: flex;
-  color: var(--gk-color-font-primary);
-}
-
-.gkc-search-bar button,
-.gkc-search-bar input {
-  border: 1px solid var(--gk-color-card-border);
-}
-
-.gkc-search-bar button[type="submit"] {
-  border-right: none;
-  border-radius: 4px 0 0 4px;
-}
-
-.gkc-search-bar button[type="reset"] {
-  border-left: none;
-  border-radius: 0 4px 4px 0;
-}
-
-.gkc-search-bar button {
-  width: 40px;
-  color: var(--gk-color-font-primary);
-  font-size: 20px;
-}
-
-.gkc-search-bar input {
-  width: calc(100% - 80px);
-  padding: 0 10px;
-  font-size: 16px;
-  border-right: none;
-  border-left: none;
-  color: var(--gk-color-font-primary);
-}
-
-.gkc-search-bar input:focus {
-  outline: none;
-}
-
-.gkc-search-bar input::placeholder {
-  color: var(--gk-color-font-placeholder);
-}
 
 /*---------------------------------------------------------------------------------*/
 /* FORM STYLEs */

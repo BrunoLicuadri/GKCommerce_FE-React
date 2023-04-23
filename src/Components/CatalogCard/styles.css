@@ -1,0 +1,25 @@
+.gkc-catalog-card-top img {
+    height: 150px;
+    width: 150px;
+}
+
+.gkc-catalog-card-top{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.gkc-catalog-card-bottom{
+    padding: 10px 20px;
+    min-height: 110px;
+}
+
+.gkc-catalog-card-bottom h3{
+    color: var(--gk-color-font-secondary);
+    font-size: 20px;
+}
+
+.gkc-catalog-card-bottom h4{
+    color: var(--gk-color-font-primary);
+    font-size: 12px;
+}

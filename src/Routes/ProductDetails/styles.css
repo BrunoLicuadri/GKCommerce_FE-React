@@ -1,0 +1,19 @@
+#product-details-section {
+    padding: 20px 0;
+}
+
+
+.gkc-category {
+    padding: 0 20px;
+    background-color: var(--gk-color-bg-terciary);
+    color: var(--gk-color-font-tertiary);
+    height: 30px;
+    font-size: 12px;
+    font-weight: 700px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
