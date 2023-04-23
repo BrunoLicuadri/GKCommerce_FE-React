@@ -24,8 +24,8 @@ export default function ProductDetailsCard(){
           </div>
 
           <div className="gkc-category-container">
-            <ProductCategory/>
-            <ProductCategory/>
+            <ProductCategory name="Eletrônicos"/>
+            <ProductCategory name="Computadores"/>
           </div>
         </div>
     );
