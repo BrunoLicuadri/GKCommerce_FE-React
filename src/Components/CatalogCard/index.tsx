@@ -1,19 +1,21 @@
 import './styles.css';
+import { ProductDTO } from '../../models/product';
 
-import imgComputer from '../../assets/Images/computer.png';
+type Props={
+    product: ProductDTO;
+}
 
-
-export default function CatalogCard() {
+export default function CatalogCard({product}: Props) {
     return (
         <div className="gkc-card">
 
             <div className="gkc-catalog-card-top gkc-line-bottom">
-                <img src={imgComputer} alt="Computa" />
+                <img src={product.imgUrl} alt={product.name} />
             </div>
 
             <div className="gkc-catalog-card-bottom">
-                <h3> R$5000,00</h3>
-                <h4>Computador Gamer XT</h4>
+                <h3>{product.price}</h3>
+                <h4>{product.name}</h4>
             </div>
         </div>
     );
