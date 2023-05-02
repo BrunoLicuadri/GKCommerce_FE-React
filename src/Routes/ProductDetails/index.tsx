@@ -39,8 +39,8 @@ export default function ProductDetails() {
           <ProductDetailsCard product={product} />
 
           <div className="gkc-btn-container">
-            <ButtonPrimary />
-            <ButtonInverse />
+            <ButtonPrimary text='Comprar'/>
+            <ButtonInverse text='Início'/>
           </div>
         </section>
       </main>

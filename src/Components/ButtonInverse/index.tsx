@@ -1,7 +1,13 @@
 import './styles.css';
 
-export default function ButtonInverse() {
+type Props = {
+    text: string;
+}
+
+export default function ButtonInverse({ text }: Props) {
     return (
-        <div className="gkc-btn gkc-btn-white">Início</div>
+        <div className="gkc-btn gkc-btn-white">
+            {text}
+        </div>
     );
 }
