@@ -1,10 +1,10 @@
 import './styles.css';
 
-import HeaderClient from '../../Components/HeaderClient';
-import SearchBar from '../../Components/SearchBar/inidex';
-import CatalogCard from '../../Components/CatalogCard';
-import ButtonNextPage from '../../Components/ButtonNextPage';
-import { ProductDTO } from '../../models/product';
+import SearchBar from '../../../Components/SearchBar/inidex';
+import CatalogCard from '../../../Components/CatalogCard';
+import ButtonNextPage from '../../../Components/ButtonNextPage';
+import { ProductDTO } from '../../../models/product';
+
 
 const product: ProductDTO = {
     id: 2,
@@ -31,8 +31,6 @@ const product: ProductDTO = {
 
 export default function Catalog() {
     return (
-        <>
-            <HeaderClient />
             <main>
                 <section id="catalog-section" className="gkc-container">
 
@@ -58,6 +56,5 @@ export default function Catalog() {
 
                 </section>
             </main>
-        </>
     );
 }

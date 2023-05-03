@@ -1,10 +1,9 @@
 import './styles.css';
 
-import ButtonInverse from "../../Components/ButtonInverse";
-import ButtonPrimary from "../../Components/ButtonPrimary";
-import HeaderClient from "../../Components/HeaderClient";
-import ProductDetailsCard from "../../Components/ProductDetailsCard";
-import { ProductDTO } from '../../models/product';
+import ButtonInverse from "../../../Components/ButtonInverse";
+import ButtonPrimary from "../../../Components/ButtonPrimary";
+import ProductDetailsCard from "../../../Components/ProductDetailsCard";
+import { ProductDTO } from '../../../models/product';
 
 const product: ProductDTO = {
   id: 2,
@@ -31,8 +30,6 @@ const product: ProductDTO = {
 export default function ProductDetails() {
   return (
 
-    <>
-      <HeaderClient />
       <main>
         <section id="product-details-section" className="gkc-container">
 
@@ -44,6 +41,6 @@ export default function ProductDetails() {
           </div>
         </section>
       </main>
-    </>
+
   );
 }
