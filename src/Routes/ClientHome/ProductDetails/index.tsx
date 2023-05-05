@@ -6,6 +6,7 @@ import ProductDetailsCard from "../../../Components/ProductDetailsCard";
 import { ProductDTO } from '../../../models/product';
 import * as productService from '../../../services/product-service';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default function ProductDetails() {
@@ -25,7 +26,10 @@ export default function ProductDetails() {
 
         <div className="gkc-btn-container">
           <ButtonPrimary text='Comprar' />
-          <ButtonInverse text='Início' />
+          <Link to="/">
+            <ButtonInverse text='Início' />
+          </Link>
+
         </div>
       </section>
     </main >

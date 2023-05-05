@@ -1,19 +1,28 @@
 import './styles.css';
 
 import cartIcon from '../../assets/Images/cart.svg';
+import { Link } from 'react-router-dom';
 
 export default function HeaderClient() {
     return (
         <header className="gkc-header-client">
             <nav className="gkc-container">
-                <h1>GKCommerce</h1>
+                <Link to="/">
+                    <h1>GKCommerce</h1>
+                </Link>
                 <div className="gkc-navbar-right">
                     <div className="gkc-menu-items-container">
                         <div className="gkc-menu-items">
-                            <img src={cartIcon} alt="Carrinho de Compras" />
+                            <Link to="/cart">
+                                <img src={cartIcon} alt="Carrinho de Compras" />
+                            </Link>
+
                         </div>
                     </div>
-                    <a href="#">Entrar</a>
+                    <Link to="/login">
+                        <a href="#">Entrar</a>
+                    </Link>
+
                 </div>
 
             </nav>

@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Catalog from './Routes/ClientHome/Catalog';
 import ClientHome from './Routes/ClientHome';
 import ProductDetails from './Routes/ClientHome/ProductDetails';
@@ -15,6 +15,7 @@ function App() {
           <Route path="/catalog" element={<Catalog/>} />
           <Route path="/product-details/:productId" element={<ProductDetails/>} />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   )
