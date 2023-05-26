@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as productService from '../../../services/product-service';
-
+import * as cartService from '../../../services/cart-services';
 
 export default function ProductDetails() {
 
@@ -29,7 +29,12 @@ export default function ProductDetails() {
       });
   }, []);
 
-
+  function handleBuyClick(){
+    if(product){
+      cartService.addProduct(product);
+      navigate("/cart");
+    }
+  }
 
 
   return (
@@ -42,7 +47,10 @@ export default function ProductDetails() {
         }
 
         <div className="gkc-btn-container">
-          <ButtonPrimary text='Comprar' />
+          <div onClick={handleBuyClick}>
+            <ButtonPrimary text='Comprar' />
+          </div>
+
           <Link to="/">
             <ButtonInverse text='Início' />
           </Link>
