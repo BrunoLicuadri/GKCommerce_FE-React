@@ -13,9 +13,6 @@ export default function AdminHome() {
             setUser(response.data);
             console.log(response);
         })
-        .catch( error=>{
-            console.log("Error capturing name", error);
-        })
     }, []);
 
     return (
