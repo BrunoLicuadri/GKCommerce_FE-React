@@ -6,6 +6,7 @@ import ButtonNextPage from '../../../Components/ButtonNextPage';
 import { ProductDTO } from '../../../models/product';
 import * as productService from '../../../services/product-service';
 import { useEffect, useState } from 'react';
+import { isAuthenticated } from '../../../services/auth-services';
 
 type QueryParams = {
     page: number,
@@ -24,6 +25,7 @@ export default function Catalog() {
     });
 
     useEffect(() => {
+        console.log("Autenticado:", isAuthenticated());
         productService.findPageRequest(queryParams.page, queryParams.name)
             .then(response => {
                 const nextPage = response.data.content;
