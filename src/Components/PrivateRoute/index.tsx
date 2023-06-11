@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
-import * as authService from "../../services/auth-services";
 import { RoleEnum } from "../../models/auth";
+import * as authService from "../../services/auth-services";
 
 type Props = {
     children: JSX.Element;

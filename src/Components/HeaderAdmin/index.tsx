@@ -3,10 +3,11 @@ import homeIcon from '../../assets/Images/home.svg';
 import productsIcon from '../../assets/Images/products.svg';
 
 export default function HeaderAdmin() {
+
     return (
         <header className="gkc-header-admin">
             <nav className="gkc-container">
-                <h1>DSC Admin</h1>
+                <h1>GKC Admin</h1>
                 <div className="gkc-navbar-right">
                     <div className="gkc-menu-items-container">
                         <div className="gkc-menu-items">
