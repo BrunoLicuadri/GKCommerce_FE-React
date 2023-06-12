@@ -1,6 +1,7 @@
 import './styles.css';
 import homeIcon from '../../assets/Images/home.svg';
 import productsIcon from '../../assets/Images/products.svg';
+import LoggedUser from '../LoggedUser';
 
 export default function HeaderAdmin() {
 
@@ -19,10 +20,7 @@ export default function HeaderAdmin() {
                             <p className="gkc-menu-item-active">Produtos</p>
                         </div>
                     </div>
-                    <div className="gkc-logged-user">
-                        <p>Maria Silva</p>
-                        <a href="#">Sair</a>
-                    </div>
+                    <LoggedUser/>
                 </div>
             </nav>
         </header>

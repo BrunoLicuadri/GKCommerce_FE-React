@@ -101,6 +101,12 @@ nav h1 {
   font-weight: 700;
 }
 
+.gkc-logged-user span {
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 
 .gkc-logged-user p {
   font-size: 12px;
