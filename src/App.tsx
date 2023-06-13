@@ -1,21 +1,22 @@
 
-import { Navigate, Route, Routes } from 'react-router-dom';
 import Catalog from './Routes/ClientHome/Catalog';
 import ClientHome from './Routes/ClientHome';
 import ProductDetails from './Routes/ClientHome/ProductDetails';
 import Cart from './Routes/ClientHome/Cart';
-import { useEffect, useState } from 'react';
-import { ContextCartCount } from './utils/context-cart';
 import Login from './Routes/ClientHome/Login';
 import AdminHome from './Routes/Admin/AdminHome';
 import Admin from './Routes/Admin';
+import PrivateRoute from './Components/PrivateRoute';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import { history } from './utils/history';
-import PrivateRoute from './Components/PrivateRoute';
 import { AccessTokenPayloadDTO } from './models/auth';
 import { ContextToken } from './utils/context-token';
+import { useEffect, useState } from 'react';
+import { ContextCartCount } from './utils/context-cart';
 import * as authService from './services/auth-services';
 import * as cartService from './services/cart-services';
+import Confirmation from './Routes/ClientHome/Confirmation';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
               <Route path="/product-details/:productId" element={<ProductDetails />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="login" element={<Login />} />
+              <Route path="confirmation/:orderId" element={<Confirmation/>} />
             </Route>
             <Route path="/admin/" element={<PrivateRoute roles={['ROLE_ADMIN']}><Admin /></PrivateRoute>} >
               <Route index element={<AdminHome />} />

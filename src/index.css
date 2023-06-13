@@ -202,6 +202,12 @@ nav h1 {
 
 }
 
+.gkc-btn-white {
+  border: 1px solid var(--gk-color-btn-primary);
+  background-color: var(--gk-color-btn-inverse);
+  color: var(--gk-color-btn-primary);
+}
+
 
 /*---------------------------------------------------------------------------------*/
 /* SEARCH BAR STYLEs */

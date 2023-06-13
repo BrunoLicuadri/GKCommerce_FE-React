@@ -49,7 +49,7 @@ export default function Cart() {
                             <div className="dsc-card dsc-mb20">
                                 {
                                     cart.items.map(item => (
-                                        <div key={item.productId} className="dsc-cart-item-container dsc-line-button">
+                                        <div key={item.productId} className="dsc-cart-item-container gkc-line-bottom">
                                             <div className="dsc-cart-item-left">
                                                 <img src={item.imgUrl} alt={item.name} />
                                                 <div className="dsc-cart-item-description">
