@@ -1,10 +1,11 @@
 import './styles.css';
 import editIcon from '../../../assets/Images/edit.svg';
 import deleteIcon from '../../../assets/Images/delete.svg';
-import computer from '../../../assets/Images/computer.png';
 import * as productService from '../../../services/product-service';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
+import SearchBar from '../../../Components/SearchBar/inidex';
+import ButtonNextPage from '../../../Components/ButtonNextPage';
 
 
 type QueryParams = {
@@ -32,6 +33,15 @@ export default function ProductListing() {
             });
     }, [queryParams]);
 
+    function handleSearch(searchText: string) {
+        setProducts([]);
+        setQueryParams({ ...queryParams, page: 0, name: searchText });
+    }
+
+    function handleNextPageClick() {
+        setQueryParams({ ...queryParams, page: queryParams.page + 1 });
+    }
+
     return (
         <main>
             <section id="product-listing-section" className="gkc-container">
@@ -41,11 +51,7 @@ export default function ProductListing() {
                     <div className="gkc-btn gkc-btn-white">Novo</div>
                 </div>
 
-                <form className="gkc-search-bar">
-                    <button type="submit">🔎︎</button>
-                    <input type="text" placeholder="Nome do produto" />
-                    <button type="reset">🗙</button>
-                </form>
+                <SearchBar onSearch={handleSearch} />
 
                 <table className="gkc-table gkc-mb20 gkc-mt20">
                     <thead>
@@ -61,7 +67,7 @@ export default function ProductListing() {
                     <tbody>
                         {
                             products.map(product => (
-                                <tr>
+                                <tr key={product.id}>
                                     <td className="gkc-tb576">{product.id}</td>
                                     <td><img className="gkc-product-listing-image" src={product.imgUrl} alt={product.name} /></td>
                                     <td className="gkc-tb768">R$ {product.price}</td>
@@ -74,7 +80,12 @@ export default function ProductListing() {
                     </tbody>
                 </table>
 
-                <div className="gkc-btn-next-page">Carregar mais</div>
+                {
+                    !isLastPage &&
+                    <ButtonNextPage onNextPage={handleNextPageClick} />
+                }
+
+
             </section>
         </main>
     );
