@@ -2,8 +2,8 @@ import './styles.css';
 import { useEffect, useState } from 'react';
 import { OrderDTO } from '../../../models/order';
 import { useParams } from 'react-router-dom';
-import * as orderService from '../../../services/order-service';
 import { Link } from 'react-router-dom';
+import * as orderService from '../../../services/order-service';
 
 
 export default function Confirmation() {
@@ -51,7 +51,7 @@ export default function Confirmation() {
                     Pedido realizado! Número {order?.id}
                 </div>
 
-                <div className="gkc-btn-page-container">
+                <div className="gkc-btn-container">
                     <Link to="/">
                         <div className="gkc-btn gkc-btn-white">
                             Início

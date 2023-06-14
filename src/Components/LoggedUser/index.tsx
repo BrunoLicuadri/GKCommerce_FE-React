@@ -24,7 +24,7 @@ export default function LoggedUser() {
             )
             : (
                 <Link to="/login">
-                    <a href="#">Entrar</a >
+                    Entrar
                 </Link >
             )
     );
