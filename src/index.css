@@ -91,14 +91,18 @@ nav h1 {
   align-items: center;
 }
 
+.gkc-menu-items-active {
+  font-weight: 700;
+}
+
+.gkc-menu-items-non-active {
+  font-weight: 500;
+}
+
 .gkc-menu-items p {
   display: none;
   margin-left: 5px;
   font-size: 14px;
-}
-
-.gkc-menu-items-active {
-  font-weight: 700;
 }
 
 .gkc-logged-user span {

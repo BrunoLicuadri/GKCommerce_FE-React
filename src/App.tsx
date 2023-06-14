@@ -17,6 +17,8 @@ import { ContextCartCount } from './utils/context-cart';
 import * as authService from './services/auth-services';
 import * as cartService from './services/cart-services';
 import Confirmation from './Routes/ClientHome/Confirmation';
+import ProductListing from './Routes/Admin/ProductListing';
+import ProductForm from './Routes/Admin/ProductForm';
 
 function App() {
 
@@ -43,10 +45,13 @@ function App() {
               <Route path="/product-details/:productId" element={<ProductDetails />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="login" element={<Login />} />
-              <Route path="confirmation/:orderId" element={<PrivateRoute><Confirmation/></PrivateRoute>} />
+              <Route path="confirmation/:orderId" element={<PrivateRoute><Confirmation/></PrivateRoute>} />n 
             </Route>
             <Route path="/admin/" element={<PrivateRoute roles={['ROLE_ADMIN']}><Admin /></PrivateRoute>} >
-              <Route index element={<AdminHome />} />
+              <Route index element={<Navigate to="/admin/home"/>} />
+              <Route path="home" element={<AdminHome />} />
+              <Route path="products" element={<ProductListing />} />
+              <Route path="products/:productId" element={<ProductForm />} />
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
