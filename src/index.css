@@ -427,3 +427,7 @@ nav h1 {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
+
+.gkc-dialog-btn {
+  width: 100%;
+}

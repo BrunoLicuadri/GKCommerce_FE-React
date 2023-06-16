@@ -11,7 +11,7 @@ export default function DialogInfo({ message, onDialogClose }: Props) {
         <div className="gkc-dialog-info-background" onClick={() => onDialogClose()}>
             <div className="gkc-dialog-box" onClick={(e)=> e.stopPropagation()}>
                 <h2>{message}</h2>
-                <div onClick={() => onDialogClose()} className="gkc-dialog-btn-container">
+                <div onClick={() => onDialogClose()} className="gkc-dialog-btn">
                     <ButtonPrimary text="OK" />
                 </div>
             </div>
