@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
 import SearchBar from '../../../Components/SearchBar/inidex';
 import ButtonNextPage from '../../../Components/ButtonNextPage';
+import DialogInfo from '../../../Components/DialogInfo';
 
 
 type QueryParams = {
@@ -24,6 +25,11 @@ export default function ProductListing() {
         name: ""
     });
 
+    const [dialogInfoData, setDialogInfoData] = useState({
+        visible: false,
+        message: "Operação com Sucesso"
+    });
+
     useEffect(() => {
         productService.findPageRequest(queryParams.page, queryParams.name)
             .then(response => {
@@ -40,6 +46,14 @@ export default function ProductListing() {
 
     function handleNextPageClick() {
         setQueryParams({ ...queryParams, page: queryParams.page + 1 });
+    }
+
+    function handleDialogInfoClose(){
+        setDialogInfoData( {...dialogInfoData, visible: false})
+    }
+
+    function handleDeleteClick(){
+        setDialogInfoData( {...dialogInfoData, visible: true})
     }
 
     return (
@@ -73,7 +87,7 @@ export default function ProductListing() {
                                     <td className="gkc-tb768">R$ {product.price}</td>
                                     <td className="gkc-txt-left">{product.name}</td>
                                     <td><img className="gkc-product-listing-btn" src={editIcon} alt="Editar" /></td>
-                                    <td><img className="gkc-product-listing-btn" src={deleteIcon} alt="Deletar" /></td>
+                                    <td><img onClick={handleDeleteClick} className="gkc-product-listing-btn" src={deleteIcon} alt="Deletar" /></td>
                                 </tr>
                             ))
                         }
@@ -87,6 +101,13 @@ export default function ProductListing() {
 
 
             </section>
+            {
+                dialogInfoData.visible &&
+                <DialogInfo
+                    message={dialogInfoData.message}
+                    onDialogClose={handleDialogInfoClose}
+                />
+            }
         </main>
     );
 }
