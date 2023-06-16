@@ -7,7 +7,7 @@ import { ProductDTO } from '../../../models/product';
 import SearchBar from '../../../Components/SearchBar/inidex';
 import ButtonNextPage from '../../../Components/ButtonNextPage';
 import DialogInfo from '../../../Components/DialogInfo';
-
+import DialogConfirmation from '../../../Components/DialogConfirmation';
 
 type QueryParams = {
     page: number,
@@ -30,6 +30,11 @@ export default function ProductListing() {
         message: "Operação com Sucesso"
     });
 
+    const [dialogConfirmationData, setDialogConfirmationData] = useState({
+        visible: false,
+        message: "Tem certeza ?"
+    });
+
     useEffect(() => {
         productService.findPageRequest(queryParams.page, queryParams.name)
             .then(response => {
@@ -48,12 +53,17 @@ export default function ProductListing() {
         setQueryParams({ ...queryParams, page: queryParams.page + 1 });
     }
 
-    function handleDialogInfoClose(){
-        setDialogInfoData( {...dialogInfoData, visible: false})
+    function handleDialogInfoClose() {
+        setDialogInfoData({ ...dialogInfoData, visible: false })
     }
 
-    function handleDeleteClick(){
-        setDialogInfoData( {...dialogInfoData, visible: true})
+    function handleDialogConfirmationAnswer(answer: boolean) {
+        console.log("Resposta:", answer);
+        setDialogConfirmationData({ ...dialogConfirmationData, visible: false })
+    }
+
+    function handleDeleteClick() {
+        setDialogConfirmationData({ ...dialogConfirmationData, visible: true })
     }
 
     return (
@@ -106,6 +116,14 @@ export default function ProductListing() {
                 <DialogInfo
                     message={dialogInfoData.message}
                     onDialogClose={handleDialogInfoClose}
+                />
+            }
+
+            {
+                dialogConfirmationData.visible &&
+                <DialogConfirmation
+                    message={dialogConfirmationData.message}
+                    onDialogConfirmationAnswer={handleDialogConfirmationAnswer}
                 />
             }
         </main>
