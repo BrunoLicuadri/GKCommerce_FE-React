@@ -8,6 +8,8 @@ import SearchBar from '../../../Components/SearchBar/inidex';
 import ButtonNextPage from '../../../Components/ButtonNextPage';
 import DialogInfo from '../../../Components/DialogInfo';
 import DialogConfirmation from '../../../Components/DialogConfirmation';
+import ButtonInverse from '../../../Components/ButtonInverse';
+import { useNavigate } from 'react-router-dom';
 
 type QueryParams = {
     page: number,
@@ -32,9 +34,11 @@ export default function ProductListing() {
 
     const [dialogConfirmationData, setDialogConfirmationData] = useState({
         visible: false,
-        id:0,
+        id: 0,
         message: "Tem certeza ?"
     });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         productService.findPageRequest(queryParams.page, queryParams.name)
@@ -60,14 +64,14 @@ export default function ProductListing() {
 
     function handleDialogConfirmationAnswer(answer: boolean, productId: number) {
         console.log("Resposta:", answer);
-        if(answer){
+        if (answer) {
             productService.deleteById(productId)
-                .then( () =>{
+                .then(() => {
                     setProducts([]);
-                    setQueryParams({...queryParams, page:0});
+                    setQueryParams({ ...queryParams, page: 0 });
                 })
-                .catch( error => {
-                    setDialogInfoData( {
+                .catch(error => {
+                    setDialogInfoData({
                         visible: true,
                         message: error.response.data.error
                     })
@@ -81,13 +85,19 @@ export default function ProductListing() {
         setDialogConfirmationData({ ...dialogConfirmationData, id: productId, visible: true })
     }
 
+    function handleNewProductClick(){
+        navigate("/admin/products/create")
+    }
+
     return (
         <main>
             <section id="product-listing-section" className="gkc-container">
                 <h2 className="gkc-section-title gkc-mb20">Cadastro de produtos</h2>
 
-                <div className="gkc-btn-page-container gkc-mb20">
-                    <div className="gkc-btn gkc-btn-white">Novo</div>
+                <div className="gkc-btn-container gkc-mb20">
+                    <div onClick={handleNewProductClick}>
+                        <ButtonInverse text="Novo" />
+                    </div>
                 </div>
 
                 <SearchBar onSearch={handleSearch} />
@@ -112,7 +122,7 @@ export default function ProductListing() {
                                     <td className="gkc-tb768">R$ {product.price}</td>
                                     <td className="gkc-txt-left">{product.name}</td>
                                     <td><img className="gkc-product-listing-btn" src={editIcon} alt="Editar" /></td>
-                                    <td><img onClick={()=>handleDeleteClick(product.id)} className="gkc-product-listing-btn" src={deleteIcon} alt="Deletar" /></td>
+                                    <td><img onClick={() => handleDeleteClick(product.id)} className="gkc-product-listing-btn" src={deleteIcon} alt="Deletar" /></td>
                                 </tr>
                             ))
                         }
