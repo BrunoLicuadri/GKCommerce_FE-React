@@ -20,7 +20,7 @@ export default function ProductForm() {
             placeholder: "Nome",
         },
         price: {
-            value: "200",
+            value: "",
             id: "price",
             name: "price",
             type: "number",
@@ -41,8 +41,6 @@ export default function ProductForm() {
 
     useEffect( ()=>{
         if(isEditing){
-            const obj = forms.validate(formData, "price");
-            console.log(obj);
             productService.findById(Number(params.productId))
                 .then( response =>{
                     const newformData =(forms.updateAll(formData, response.data));
@@ -52,7 +50,9 @@ export default function ProductForm() {
     }, []);
 
     function handleInputChange(event: any) {
-        setFormData(forms.update(formData, event.target.name, event.target.value));
+        const dataUpdated = forms.update(formData, event.target.name, event.target.value);
+        const dataValidated = forms.validate(dataUpdated, event.target.name );
+        setFormData(dataValidated);
     }
 
 
@@ -69,7 +69,7 @@ export default function ProductForm() {
                                     className="gkc-form-control"
                                     onChange={handleInputChange}
                                 />
-                                <div className="gkc-form-error"></div>
+                                <div className="gkc-form-error">{formData.name.message}</div>
                             </div>
                             <div>
                                 <FormInput
@@ -77,7 +77,7 @@ export default function ProductForm() {
                                     className="gkc-form-control"
                                     onChange={handleInputChange}
                                 />
-                                <div className="gkc-form-error"></div>
+                                <div className="gkc-form-error">{formData.price.message}</div>
                             </div>
                             <div>
                                 <FormInput
@@ -85,7 +85,6 @@ export default function ProductForm() {
                                     className="gkc-form-control"
                                     onChange={handleInputChange}
                                 />
-                                <div className="gkc-form-error"></div>
                             </div>
                         </div>
 
