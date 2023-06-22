@@ -253,11 +253,11 @@ nav h1 {
   border-radius: 4px;
 }
 
-.gkc-form-control[data-invalid="true"] {
+.gkc-form-control[data-invalid="true"][data-dirty="true"] {
   border: 1px solid var(--gk-color-error);
 }
 
-.gkc-form-control[data-invalid="true"]~div {
+.gkc-form-control[data-invalid="true"][data-dirty="true"]~div {
   display: unset;
 }
 

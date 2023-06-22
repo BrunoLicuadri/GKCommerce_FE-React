@@ -25,7 +25,7 @@ export default function ProductForm() {
             name: "price",
             type: "number",
             placeholder: "Preço",
-            validation: function (value: any){
+            validation: function (value: any) {
                 return Number(value) > 0;
             },
             message: "Favor inserir um valor positivo."
@@ -39,11 +39,13 @@ export default function ProductForm() {
         }
     });
 
-    useEffect( ()=>{
-        if(isEditing){
+    useEffect(() => {
+        const result = forms.toDirty(formData, "price");
+        console.log(result);
+        if (isEditing) {
             productService.findById(Number(params.productId))
-                .then( response =>{
-                    const newformData =(forms.updateAll(formData, response.data));
+                .then(response => {
+                    const newformData = (forms.updateAll(formData, response.data));
                     setFormData(newformData);
                 })
         }
@@ -51,8 +53,13 @@ export default function ProductForm() {
 
     function handleInputChange(event: any) {
         const dataUpdated = forms.update(formData, event.target.name, event.target.value);
-        const dataValidated = forms.validate(dataUpdated, event.target.name );
+        const dataValidated = forms.validate(dataUpdated, event.target.name);
         setFormData(dataValidated);
+    }
+
+    function handleTurnDirty(name: string){
+        const newFormData = forms.toDirty(formData, name);
+        setFormData(newFormData);
     }
 
 
@@ -67,6 +74,7 @@ export default function ProductForm() {
                                 <FormInput
                                     {...formData.name}
                                     className="gkc-form-control"
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                 />
                                 <div className="gkc-form-error">{formData.name.message}</div>
@@ -75,6 +83,7 @@ export default function ProductForm() {
                                 <FormInput
                                     {...formData.price}
                                     className="gkc-form-control"
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                 />
                                 <div className="gkc-form-error">{formData.price.message}</div>
@@ -83,6 +92,7 @@ export default function ProductForm() {
                                 <FormInput
                                     {...formData.imgUrl}
                                     className="gkc-form-control"
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                 />
                             </div>
