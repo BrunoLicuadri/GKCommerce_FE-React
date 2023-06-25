@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import FormInput from '../../../Components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as productService from '../../../services/product-service';
+import FormTextArea from '../../../Components/FormTextArea';
 
 export default function ProductForm() {
 
@@ -18,7 +19,7 @@ export default function ProductForm() {
             name: "name",
             type: "text",
             placeholder: "Nome",
-            validation: function(value: string){
+            validation: function (value: string) {
                 return /^.{3,80}$/.test(value);
             },
             message: "Favor preencher um nome de 3 a 80 caracteres."
@@ -40,6 +41,17 @@ export default function ProductForm() {
             name: "imgUrl",
             type: "text",
             placeholder: "Imagem",
+        },
+        description: {
+            value: "",
+            id: "description",
+            name: "description",
+            type: "text",
+            placeholder: "descrição",
+            validation: function (value: string) {
+                return /^.{10,}$/.test(value);
+            },
+            message: "Descrição deve conter mínimo 10 caracteres."
         }
     });
 
@@ -58,7 +70,7 @@ export default function ProductForm() {
         setFormData(result);
     }
 
-    function handleTurnDirty(name: string){
+    function handleTurnDirty(name: string) {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
@@ -95,6 +107,15 @@ export default function ProductForm() {
                                     onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                 />
+                            </div>
+                            <div>
+                                <FormTextArea
+                                    {...formData.description}
+                                    className="gkc-form-control gkc-textarea"
+                                    onTurnDirty={handleTurnDirty}
+                                    onChange={handleInputChange}
+                                />
+                                <div className="gkc-form-error">{formData.description.message}</div>
                             </div>
                         </div>
 
