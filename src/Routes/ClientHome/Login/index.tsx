@@ -47,15 +47,11 @@ export default function Login() {
     }
 
     function handleInputChange(event: any) {
-        const name = event.target.name;
-        const value = event.target.value;
-        setFormData(forms.updateAndValidate(formData,name,value));
-        //could also be like:
-        //setFormData(forms.updateAndValidate(formData,event.target.name,event.target.value));
+        setFormData(forms.updateAndValidate(formData,event.target.name,event.target.value));
     }
 
     function handleTurnDirty(name: string){
-        setFormData(forms.toDirty(formData, name));
+        setFormData(forms.dirtyAndValidate(formData, name));
     }
 
     return (
@@ -72,7 +68,7 @@ export default function Login() {
                                     onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                 />
-                                <div className="gkc-form-error"></div>
+                                <div className="gkc-form-error">{formData.username.message}</div>
                             </div>
                             <div>
                                 <FormInput
@@ -81,6 +77,7 @@ export default function Login() {
                                     onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                 />
+                                <div className="gkc-form-error">{formData.password.message}</div>
                             </div>
                         </div>
 
