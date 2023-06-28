@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './styles.css';
 import { useEffect, useState } from 'react';
 import FormInput from '../../../Components/FormInput';
@@ -15,13 +15,15 @@ export default function ProductForm() {
 
     const params = useParams();
 
+    const navigate = useNavigate();
+
     const isEditing = params.productId !== "create";
 
-    const[categories, setCategories] = useState<CategoryDTO[]>();
+    const [categories, setCategories] = useState<CategoryDTO[]>();
 
-    useEffect( ()=>{
+    useEffect(() => {
         categoryService.findAllRequest()
-            .then( response=> {
+            .then(response => {
                 setCategories(response.data);
             })
     }, []);
@@ -57,7 +59,7 @@ export default function ProductForm() {
             placeholder: "Imagem",
         },
         categories: {
-            value:[],
+            value: [],
             id: "categories",
             name: "categories",
             placeholder: "Categoria",
@@ -98,13 +100,28 @@ export default function ProductForm() {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
-    function handleSubmit(event: any){
+    function handleSubmit(event: any) {
         event.preventDefault();
         const formDataValidated = forms.dirtyAndValidateAll(formData);
-        if (forms.hasAnyInvalid(formDataValidated)){
+        if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             return;
         }
+
+        const requestBody = forms.toValues(formData);
+        if (isEditing) {
+            requestBody.id = params.productId;
+        }
+
+        const request = isEditing
+            ? productService.updateRequest(requestBody)
+            : productService.insertRequest(requestBody);
+
+        request
+            .then(() => {
+                navigate("/admin/products");
+            })
+
     }
 
 
@@ -143,18 +160,18 @@ export default function ProductForm() {
                             </div>
                             <div>
                                 <FormSelect
-                                {...formData.categories}
-                                styles={selectStyles}
-                                className="gkc-form-control gkc-form-select-container"
-                                options={categories} 
-                                onChange={(obj: any) => {
-                                const newFormData = forms.updateAndValidate(formData, "categories", obj);
-                                setFormData(newFormData);
-                                }}
-                                isMulti
-                                getOptionLabel={(obj: any)=> obj.name}
-                                getOptionValue={(obj: any)=> String(obj.id)}
-                                onTurnDirty={handleTurnDirty}
+                                    {...formData.categories}
+                                    styles={selectStyles}
+                                    className="gkc-form-control gkc-form-select-container"
+                                    options={categories}
+                                    onChange={(obj: any) => {
+                                        const newFormData = forms.updateAndValidate(formData, "categories", obj);
+                                        setFormData(newFormData);
+                                    }}
+                                    isMulti
+                                    getOptionLabel={(obj: any) => obj.name}
+                                    getOptionValue={(obj: any) => String(obj.id)}
+                                    onTurnDirty={handleTurnDirty}
                                 />
                                 <div className="gkc-form-error">{formData.categories.message}</div>
                             </div>
