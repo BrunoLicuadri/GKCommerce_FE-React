@@ -89,6 +89,10 @@ export default function ProductListing() {
         navigate("/admin/products/create")
     }
 
+    function handleUpdateClick(productId: number){
+        navigate(`/admin/products/${productId}`);
+    }
+
     return (
         <main>
             <section id="product-listing-section" className="gkc-container">
@@ -121,7 +125,7 @@ export default function ProductListing() {
                                     <td><img className="gkc-product-listing-image" src={product.imgUrl} alt={product.name} /></td>
                                     <td className="gkc-tb768">R$ {product.price}</td>
                                     <td className="gkc-txt-left">{product.name}</td>
-                                    <td><img className="gkc-product-listing-btn" src={editIcon} alt="Editar" /></td>
+                                    <td><img onClick={() => handleUpdateClick(product.id)} className="gkc-product-listing-btn" src={editIcon} alt="Editar" /></td>
                                     <td><img onClick={() => handleDeleteClick(product.id)} className="gkc-product-listing-btn" src={deleteIcon} alt="Deletar" /></td>
                                 </tr>
                             ))

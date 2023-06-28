@@ -98,12 +98,21 @@ export default function ProductForm() {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
+    function handleSubmit(event: any){
+        event.preventDefault();
+        const formDataValidated = forms.dirtyAndValidateAll(formData);
+        if (forms.hasAnyInvalid(formDataValidated)){
+            setFormData(formDataValidated);
+            return;
+        }
+    }
+
 
     return (
         <main>
             <section id="product-form-section" className="gkc-container">
                 <div className="gkc-product-form-container">
-                    <form className="gkc-card gkc-form">
+                    <form onSubmit={handleSubmit} className="gkc-card gkc-form">
                         <h2>Dados do produto</h2>
                         <div className="gkc-form-controls-container">
                             <div>
