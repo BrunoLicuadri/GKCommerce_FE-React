@@ -5,10 +5,11 @@ import FormInput from '../../../Components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as productService from '../../../services/product-service';
 import FormTextArea from '../../../Components/FormTextArea';
-import Select from 'react-select';
 import { CategoryDTO } from '../../../models/category';
 import * as categoryService from '../../../services/category-service';
 import FormSelect from '../../../Components/FormSelect';
+import { selectStyles } from '../../../utils/select';
+
 
 export default function ProductForm() {
 
@@ -134,7 +135,8 @@ export default function ProductForm() {
                             <div>
                                 <FormSelect
                                 {...formData.categories}
-                                className="gkc-form-control"
+                                styles={selectStyles}
+                                className="gkc-form-control gkc-form-select-container"
                                 options={categories} 
                                 onChange={(obj: any) => {
                                 const newFormData = forms.updateAndValidate(formData, "categories", obj);

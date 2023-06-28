@@ -283,16 +283,9 @@ nav h1 {
   display: none;
 }
 
-.gkc-select:invalid {
-  color: var(--gk-color-font-placeholder);
-}
-
-.gkc-select option[disabled] {
-  display: none;
-}
-
-.gkc-select option {
-  color: var(--gk-color-font-primary);
+.gkc-form-select-container {
+  padding: unset;
+  height: unset;
 }
 
 .gkc-textarea {
