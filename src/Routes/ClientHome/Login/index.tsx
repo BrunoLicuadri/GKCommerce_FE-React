@@ -12,6 +12,8 @@ export default function Login() {
 
     const { setContextTokenPayload } = useContext(ContextToken);
 
+    const [submitResponseFail, setSubmitResponseFail] = useState(false);
+
     const [formData, setFormData] = useState<any>({
         username: {
             value: "",
@@ -35,22 +37,28 @@ export default function Login() {
 
     function handleSubmit(event: any) {
         event.preventDefault();
+        setSubmitResponseFail(false);
+        const formDataValidated = forms.dirtyAndValidateAll(formData);
+        if (forms.hasAnyInvalid(formDataValidated)) {
+            setFormData(formDataValidated);
+            return;
+        }
         authService.loginRequest(forms.toValues(formData))
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
                 setContextTokenPayload(authService.getAccessTokenPayload());
                 navigate("/cart");
             })
-            .catch(error => {
-                console.log("Erro no Login", error);
+            .catch(() => {
+                setSubmitResponseFail(true);
             })
     }
 
     function handleInputChange(event: any) {
-        setFormData(forms.updateAndValidate(formData,event.target.name,event.target.value));
+        setFormData(forms.updateAndValidate(formData, event.target.name, event.target.value));
     }
 
-    function handleTurnDirty(name: string){
+    function handleTurnDirty(name: string) {
         setFormData(forms.dirtyAndValidate(formData, name));
     }
 
@@ -80,6 +88,14 @@ export default function Login() {
                                 <div className="gkc-form-error">{formData.password.message}</div>
                             </div>
                         </div>
+
+                        {
+                            submitResponseFail &&
+                            <div className='gkc-form-global-error'>
+                                Usuário ou senha inválido.
+                            </div>
+                        }
+
 
                         <div className="gkc-login-form-buttons gkc-mt20">
                             <button type="submit" className="gkc-btn gkc-btn-blue">Entrar</button>
